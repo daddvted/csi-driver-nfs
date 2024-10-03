@@ -133,6 +133,7 @@ func (cs *ControllerServer) CreateVolume(ctx context.Context, req *csi.CreateVol
 	for k, v := range parameters {
 		switch strings.ToLower(k) {
 		case paramServer:
+		case paramWeight:
 		case paramShare:
 		case paramSubDir:
 		case paramOnDelete:

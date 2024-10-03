@@ -67,6 +67,7 @@ const (
 	DefaultDriverName = "nfs.csi.k8s.io"
 	// Address of the NFS server
 	paramServer = "server"
+	paramWeight = "weight"
 	// Base directory of the NFS server to create volumes under.
 	// The base directory must be a direct child of the root directory.
 	// The root directory is omitted from the string, for example:
