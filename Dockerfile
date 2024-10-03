@@ -12,12 +12,16 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-FROM registry.k8s.io/build-image/debian-base:bookworm-v1.0.4
+#FROM registry.k8s.io/build-image/debian-base:bookworm-v1.0.4
+FROM 192.168.6.99/library/debian-base:bookworm-v1.0.4
 
-ARG ARCH
+ARG ARCH=amd64
 ARG binary=./bin/${ARCH}/nfsplugin
 COPY ${binary} /nfsplugin
 
-RUN apt update && apt upgrade -y && apt-mark unhold libcap2 && clean-install ca-certificates mount nfs-common netbase
+COPY sources.list /etc/apt
+
+#RUN apt update && apt upgrade -y && apt-mark unhold libcap2 && clean-install ca-certificates mount nfs-common netbase
+RUN rm -rf /etc/apt/sources.list.d && apt update && apt-mark unhold libcap2 && clean-install ca-certificates mount nfs-common netbase
 
 ENTRYPOINT ["/nfsplugin"]
